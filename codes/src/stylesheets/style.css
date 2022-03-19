@@ -1,0 +1,132 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* custom styles */
+body {
+	padding: 56px 36px;
+	font-family: 'Roboto', sans-serif;
+}
+#root {
+    
+	max-width: 1068px;
+	width: 100%;
+	margin: 24px auto;
+}
+
+.main-section {
+	box-shadow: 0 8px 8px 2px rgba(0,0,0,0.1);
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: 36px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.aside-img {
+	width: 25%;
+	display: flex;
+}
+.aside-img img {
+	width: 100%;
+	object-fit: cover;
+	border-top-left-radius: 36px;
+	border-bottom-left-radius: 36px;
+}
+
+
+/* form */
+
+
+form {
+	width: 75%;
+	padding: 56px 72px 56px 56px;
+}
+
+.f-header {
+	padding-bottom: 48px;
+	display: flex;
+	margin-bottom: 36px;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.f-header div {
+	margin-right: 40px;
+	color: rgba(0,0,0,0.5);
+	font-size: 20px;
+}
+.f-header div span {
+	background-color: rgba(0,0,0,0.1);
+	padding: 10px 16px;
+	margin-right: 10px;
+	color: rgba(0,0,0,0.4);
+	border-radius: 6px;
+	font-weight: 650;
+}
+.blue {
+	background-color: rgba(26, 26, 248,0.6) !important;
+	color: rgba(255,255,255,1) !important ;
+}
+
+/* middle section */
+
+.middle-section {
+	padding-bottom: 48px;
+	margin-bottom: 36px;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.middle-section h1 {
+	color: rgba(0,0,0,0.4);
+	margin-bottom: 12px;
+	font-size: 16px;
+}
+.middle-section h2 {
+	color: rgba(3, 3, 68, 0.9);
+	margin-bottom: 36px;
+	font-size: 22px;
+	font-weight: 750;
+}
