@@ -7,18 +7,93 @@ class MainForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            message: "",
+            firstStatus: false,
+            secondStatus: false,
             currentStep : 1,
+            firstName: "",
+            lastName:"",
+            email:"",
+            birthDate: 0,
+            address: "",
+            errors:{
+                email:"",
+            }
         }
     }
+    handleInput = ({target}) => {
+        let {name,value} = target;
+        // console.log(value)
+        let errors = this.state.errors;
+        switch (name){
+            case "email": errors.email  = this.validateEmail(value) ? "" : "Error Message"
+                break;
+            default:
+                break;
+        }
+
+        this.setState(() => {
+            return {
+                [name]: value,
+            }
+        })
+    }
+    handleCheck = ({target}) => {
+        let {name} = target;
+        this.setState(() => {
+            return {
+                [name]: !this.state[name],
+            }
+        })
+    }
+    validateEmail = (email) => {
+        let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
     getPage = () => {
         let step = this.state.currentStep;
         if(step === 1){
-            return <PageOne />
+            return <PageOne
+                    handleInput={() => this.handleInput} 
+                    step={this.state.currentStep}
+                    first={this.state.firstName}
+                    last={this.state.lastName}
+                    email={this.state.email}
+                    error={this.state.errors.email}
+                    bDate={this.state.birthDate}  />
+                    
         }else if(step === 2){
-            return <PageTwo />
+            return <PageTwo 
+                    handleInput={() => this.handleInput} 
+                    step={this.state.currentStep}
+                    message={this.state.message}
+                    firstStatus={this.state.firstStatus}
+                    secondStatus={this.state.secondStatus}
+                    handleCheck={() => this.handleCheck}/>
         }else{
-            return <PageThree />
+            return <PageThree
+                    handleInput={() => this.handleInput} 
+                    step={this.state.currentStep} />
         }
+    }
+    handleClick = (name) => {
+        if(name === "back"){
+            this.setState((prevState) => {
+                return {
+                    currentStep : prevState.currentStep - 1
+                }
+            })
+        }else{
+            this.setState((prevState) => {
+                return {
+                    currentStep : prevState.currentStep + 1
+                }
+            })
+        }
+    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        // alert("data added");
     }
     render(){
         let imgArr= [
@@ -31,12 +106,12 @@ class MainForm extends React.Component {
                     <aside className='aside-img'>
                         <img src={imgArr[this.state.currentStep - 1]} alt={this.state.currentStep} />
                     </aside>
-                    <form>
+                    <form onClick={this.handleSubmit} >
                         <header className='f-header'>
                             {
                                 ["Sign Up","Message","Checkbox"].map((value,index) => {
                                     return (
-                                        <div>
+                                        <div key={index+1} >
                                             <span className={this.state.currentStep === index+1 ? "blue" : ""}> {index+1}</span>
                                             {value}
                                         </div>
@@ -55,6 +130,15 @@ class MainForm extends React.Component {
                                 this.getPage()
                             }
                         </section>
+                        <div className='bottom-btns' >
+                            <button className={this.state.currentStep === 1 ? "hidden" : ""} onClick={ () => this.handleClick("back")} >Back</button>
+                            <div>
+                                <button className={this.state.currentStep === 3 ? "hidden" : ""} onClick={ () => this.handleClick("next")} >Next</button>
+                                {
+                                    (this.state.currentStep === 3) ? <input onClick={this.handleSubmit} type="submit" value="submit" /> : ""
+                                }
+                            </div>
+                        </div>
                     </form>
                 </section>
             </>
