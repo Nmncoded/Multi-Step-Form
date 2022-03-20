@@ -2,6 +2,7 @@ import PageOne from './page-1';
 import PageTwo from './page-2';
 import PageThree from './page-3';
 import React from 'react';
+/* import {ImCheckboxChecked} from 'react-icons/fa'; */
 
 class MainForm extends React.Component {
     constructor(props){
@@ -13,6 +14,8 @@ class MainForm extends React.Component {
             currentStep : 1,
             firstName: "",
             lastName:"",
+            firstOption: false,
+            secondOption: false,
             email:"",
             birthDate: 0,
             address: "",
@@ -40,11 +43,28 @@ class MainForm extends React.Component {
     }
     handleCheck = ({target}) => {
         let {name} = target;
+        console.log(target.value);
         this.setState(() => {
             return {
                 [name]: !this.state[name],
             }
         })
+        /* if(name === "firstStatus"){
+            this.setState(() => {
+                return {
+                    [name]: !this.state[name],
+                    secondStatus: this.state.secondStatus === true ? false : this.state.secondStatus 
+                }
+            })
+        }
+        if(name === "secondStatus"){
+            this.setState(() => {
+                return {
+                    [name]: !this.state[name],
+                    firstStatus: this.state.firstStatus === true ? false : this.state.firstStatus
+                }
+            })
+        } */
     }
     validateEmail = (email) => {
         let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -65,15 +85,18 @@ class MainForm extends React.Component {
         }else if(step === 2){
             return <PageTwo 
                     handleInput={() => this.handleInput} 
+                    handleCheck={() => this.handleCheck}
                     step={this.state.currentStep}
                     message={this.state.message}
                     firstStatus={this.state.firstStatus}
-                    secondStatus={this.state.secondStatus}
-                    handleCheck={() => this.handleCheck}/>
+                    secondStatus={this.state.secondStatus} />
         }else{
             return <PageThree
-                    handleInput={() => this.handleInput} 
-                    step={this.state.currentStep} />
+                    handleInput={() => this.handleInput}
+                    handleCheck={() => this.handleCheck} 
+                    step={this.state.currentStep} 
+                    firstOption={this.state.firstOption}
+                    secondOption={this.state.secondOption} />
         }
     }
     handleClick = (name) => {
@@ -93,7 +116,7 @@ class MainForm extends React.Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        // alert("data added");
+        alert("data added");
     }
     render(){
         let imgArr= [
@@ -106,13 +129,13 @@ class MainForm extends React.Component {
                     <aside className='aside-img'>
                         <img src={imgArr[this.state.currentStep - 1]} alt={this.state.currentStep} />
                     </aside>
-                    <form onClick={this.handleSubmit} >
+                    <form onSubmit={this.handleSubmit} >
                         <header className='f-header'>
                             {
                                 ["Sign Up","Message","Checkbox"].map((value,index) => {
                                     return (
                                         <div key={index+1} >
-                                            <span className={this.state.currentStep === index+1 ? "blue" : ""}> {index+1}</span>
+                                            <span className={this.state.currentStep === index+1 ? "blue" : ""}>{ index+1 >= this.state.currentStep ? index+1 : "✅"}</span>
                                             {value}
                                         </div>
                                     )
@@ -131,11 +154,11 @@ class MainForm extends React.Component {
                             }
                         </section>
                         <div className='bottom-btns' >
-                            <button className={this.state.currentStep === 1 ? "hidden" : ""} onClick={ () => this.handleClick("back")} >Back</button>
+                            <span className={this.state.currentStep === 1 ? "hidden" : ""} onClick={ () => this.handleClick("back")} >Back</span>
                             <div>
-                                <button className={this.state.currentStep === 3 ? "hidden" : ""} onClick={ () => this.handleClick("next")} >Next</button>
+                                <span className={this.state.currentStep === 3 ? "hidden" : ""} onClick={ () => this.handleClick("next")} >Next</span>
                                 {
-                                    (this.state.currentStep === 3) ? <input onClick={this.handleSubmit} type="submit" value="submit" /> : ""
+                                    (this.state.currentStep === 3) ? <input  type="submit" value="Submit" /> : ""
                                 }
                             </div>
                         </div>

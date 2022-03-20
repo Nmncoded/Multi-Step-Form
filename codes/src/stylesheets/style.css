@@ -68,7 +68,7 @@ body {
 }
 
 .aside-img {
-	width: 25%;
+	width: 35%;
 	display: flex;
 }
 .aside-img img {
@@ -83,7 +83,7 @@ body {
 
 
 form {
-	width: 75%;
+	width: 65%;
 	padding: 56px 88px 56px 56px;
 }
 
@@ -94,9 +94,9 @@ form {
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .f-header div {
-	margin-right: 40px;
+	margin-right: 36px;
 	color: rgba(0,0,0,0.5);
-	font-size: 20px;
+	font-size: 18px;
 }
 .f-header div span {
 	background-color: rgba(0,0,0,0.1);
@@ -198,6 +198,85 @@ form {
 	color: rgba(201, 5, 5,0.9) !important;
 }
 
+/* page-2 section */
+
+.message-field label {
+	display: block;
+	margin-bottom: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	color: rgba(3, 3, 68, 0.9);
+}
+
+.message-field textarea {
+	width: 91.5%;
+	margin-bottom: 24px;
+	color: rgba(3, 3, 68, 0.9);
+	padding: 10px 12px;
+	border-radius: 6px;
+	font-size: 16px;
+	outline: 0;
+	border: 1px solid rgba(0,0,0,0.4);
+}
+.message-field textarea:focus {
+	box-shadow:  0 0 4px 0px rgba(26, 26, 248,1);
+}
+
+.select-choice div {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.select-choice div input {
+	margin-bottom: 6px;
+	border-radius: 50%;
+	margin-right: 4px;
+}
+.select-choice div label {
+	margin-bottom: 6px;
+	font-size: 14px;
+	margin-right: 36px;
+	font-weight: 500;
+	color: rgba(3, 3, 68, 0.7);
+}
+
+/* page-3 section */
+.page3-checkbox {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	margin-bottom: 36px;
+}
+.page3-checkbox button {
+	padding: 24px 60px;
+	font-size: 40px;
+	background-color: antiquewhite;
+	outline: 0;
+	border-radius: 6px;
+	color: rgba(0, 0, 0,0.4);
+	border: 1px solid rgba(0,0,0,0.4);
+}
+
+
+.select-choice-3 {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: space-evenly; */
+	/* align-items: center; */
+}
+.select-choice-3 div input {
+	margin-bottom: 6px;
+	border-radius: 50%;
+	margin-right: 4px;
+}
+.select-choice-3 div label {
+	margin-bottom: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	color: rgba(3, 3, 68, 0.7);
+}
+
+
 /* bottom btns */
 
 .bottom-btns {
@@ -206,9 +285,10 @@ form {
 	align-items: center;
 }
 
-.bottom-btns button, .bottom-btns input {
+.bottom-btns span, .bottom-btns input {
 	background-color: rgba(26, 26, 248,0.6);
 	color: rgba(255,255,255,1);
+	cursor: pointer;
 	border: 0;
 	padding: 6px 22px;
 	border-radius: 4px;
